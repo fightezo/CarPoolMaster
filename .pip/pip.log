@@ -1,0 +1,14 @@
+------------------------------------------------------------
+/usr/bin/pip run on Sun Mar 15 04:08:00 2015
+Could not open requirements file: [Errno 2] No such file or directory: 'requirements.txt'
+Exception information:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 122, in main
+    status = self.run(options, args)
+  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 262, in run
+    for req in parse_requirements(filename, finder=finder, options=options, session=session):
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1546, in parse_requirements
+    session=session,
+  File "/usr/lib/python2.7/dist-packages/pip/download.py", line 278, in get_file_content
+    raise InstallationError('Could not open requirements file: %s' % str(e))
+InstallationError: Could not open requirements file: [Errno 2] No such file or directory: 'requirements.txt'

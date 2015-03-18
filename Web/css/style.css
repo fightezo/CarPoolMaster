@@ -1,0 +1,59 @@
+body {
+    
+    overflow-x : hidden;
+    background-image: url("../img/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+
+.bg {
+    background: url("../img/bg.jpg");
+}
+    
+
+#loc-image{
+   
+   margin-left: -10px;
+   width: 20px;
+   height: 20px;
+    
+}
+
+.car{
+    position: absolute;
+    top: 0;
+    left: -200px;
+    width: 300px;
+}
+
+.rider {
+    position: relative;
+    top: 50%;
+    left: -20px;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+}
+
+#map-canvas {
+	width:33.3333%;
+    height:calc(100% - 0);
+    position:absolute;
+    right:0;
+    top:0;
+    bottom:0;
+    overflow:hidden;
+}
+.mainbox {
+    position:relative;
+    margin-top: 10%;
+}
+
+.container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+

@@ -1,0 +1,1 @@
+Net::HTTP.get('https://maps.googleapis.com', '/maps/api/distancematrix/json?origins=Vancouver+BC&destinations=San+Francisco&mode=driving&language=en-EN') # => String

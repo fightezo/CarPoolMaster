@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
+</head>
+<body>
+<script>
+function getRequests() {
+    var s1 = location.search.substring(1, location.search.length).split('&'),
+        r = {}, s2, i;
+    for (i = 0; i < s1.length; i += 1) {
+        s2 = s1[i].split('=');
+        r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+    }
+    return r;
+};
+
+var QueryString = getRequests();
+
+
+function notifyDrivers(phoneArray){
+  
+  var start = QueryString['start'];
+  var dest = QueryString['dest'];
+  var time = QueryString['time'];
+  var payment = QueryString['payment'];
+  var contact = QueryString['contact'];
+
+    for(var i=0; i<5; i++){
+        document.write(phoneArray[i].get('phone'));
+        document.write("<br>");
+        var url = "text-driver.php?";
+        url += "phone_number="+phoneArray[i].get('phone')
+        +"&start="+start
+        +"&dest="+dest
+        +"&time="+time
+        +"&payment="+payment
+        +"&contact="+contact
+
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.open("GET", url, true);
+          xmlhttp.send();
+    }
+}
+
+// returning an arroy of 5 phone numbers (strings)
+Parse.initialize("4yGheaklr5wPeHHbzRePPsjuCgPfnrxmXnRyCfQH", "8fRZ5vFPJkTxZwoSl5Gg6JqJLSaZzxp8nbDIJqYm");
+var SessionId = Parse.Object.extend("SessionId");
+var query = new Parse.Query(SessionId);
+query.doesNotExist(null);
+query.find({
+  success: function(results) {
+    alert("Successfully retrieved " + results.length + " phone numbers.");
+    notifyDrivers(results);
+    // Do something with the returned Parse.Object values
+    // for (var i = 0; i < results.length; i++) { 
+    // var phoneArr;
+    // for (var i = 0; i < 5; i++) { 
+    //   phoneArr[i] = results[i].get('phone');
+      // alert('Phone Number: ' + object.get('phone'));
+      // console.log('Phone Number: ' + object.get('phone'));
+            
+    // }
+  },
+  error: function(error) {
+    alert("Error: " + error.code + " " + error.message);
+  }
+});
+//notifyDrivers(["17789292850","17783889722","17789188556","14038011243","17789299205"]);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+<html>
+<head>
+    <!--<script scr="http://bdaves.koding.io/js/distance.js"></script>-->
+</head>
+<body>
+
+<p id="demo">sdfgbn</p>
+
+<script>
+function getRequests() {
+    var s1 = location.search.substring(1, location.search.length).split('&'),
+        r = {}, s2, i;
+    for (i = 0; i < s1.length; i += 1) {
+        s2 = s1[i].split('=');
+        r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+    }
+    return r;
+};
+
+var QueryString = getRequests();
+
+var lat;
+var lon;
+
+
+var query = "";
+
+if (typeof QueryString["address"] !== 'undefined') {
+    query = "address="+QueryString["address"];
+}
+
+var url = "geocode-address.php?"+query;
+
+function getJSON(){
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var result = JSON.parse(xmlhttp.responseText);
+        parseLatLon(result);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+}
+
+function parseLatLon(result){
+    var resultsArray = result.results;
+    var firstObject = resultsArray[0];
+    var geometryObject = firstObject.geometry;
+    var locationObject = geometryObject.location;
+    this.lat = locationObject.lat;
+    document.write("Lat: "+this.lat);
+    this.lon = locationObject.lng;
+    document.write(" Lon: "+this.lon);
+}
+
+function getLat(){
+    return lat;
+}
+
+function getLon(){
+    return lon;
+}
+
+
+
+
+getJSON();
+
+</script>
+
+</body>
+</html>

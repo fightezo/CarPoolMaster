@@ -1,0 +1,27 @@
+{
+  "name": "mojio-js",
+  "version": "2.2.8",
+  "main": "dist/MojioClient.js",
+  "ignore": [
+    ".gitignore",
+    "travis.yml",
+    "build.sh",
+    "package.json",
+    ".jshintrc",
+    "**/*.txt",
+    "**/*.json",
+    "**/*.md",
+    "bower_components",
+    "lib",
+    "/example",
+    "node_modules",
+    "src",
+    "test"
+  ],
+  "dependencies": {
+    "jquery": "2.1.1",
+    "signalr": "2.0.2"
+  },
+  "devDependencies": {
+  }
+}

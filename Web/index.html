@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cerbius</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+<!--[if IE]>
+  <script <script src="ss.js" type="text/javascript" charset="utf-8"></script>c="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript -->
+ <script type="text/javascript" charset="utf-8" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="bower_components/signalr/jquery.signalR-2.0.2.min.js"></script>
+    <script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"> </script>
+<script src="js/map.js"></script>
+<script src="js/position.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/AuthenticatorNParser.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://djaqzxyxnyyiy.cloudfront.net/mojio-js.js"></script>
+
+</head>
+<body>
+<div id="fb-root"></div>
+<!-- FACEBOOK -->
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!--Twitter -->
+
+
+        <div class="container">    
+        <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">DRIVER</div>
+                        <!--<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>-->
+                    </div>     
+
+                    <div style="padding-top:3%" class="panel-body" >
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+                        <form id="loginform" class="form-horizontal" role="form">
+                                    
+                            <div style="margin-bottom: 2%" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Mojio ID">                                        
+                                    </div>
+                                
+                            <div style="margin-bottom: 5%" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="Phone Number" required>
+                                    </div>
+                                    
+
+                                
+                            <div class="input-group">
+                                      <div class="checkbox">
+                                        <label>
+                                          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                                        </label>
+                                      </div>
+                                    </div>
+
+
+                                <div style="margin-top:2%" class="form-group">
+                                    <!-- Button -->
+
+                                    <div class="col-sm-12 controls" style = " margin-right: 2%; display: inline-block">
+                                      <a id="authen" href = "driver.html" class="btn btn-success" style="color: white">Sync my Mojio Device </a>
+                                      <a id="btn-login" href="#" class="btn btn-success" style="color: white">GO</a>
+                                      
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-12 control">
+                                        <div style="border-top: 1% solid#888; padding-top:5%; font-size:85%" >
+                                            I am a RIDER!
+                                        <a class="right" id="driver">
+                                            Click HERE
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </form>     
+
+
+
+                        </div>                     
+                    </div>  
+        </div>
+        <div id="signupbox" style="display:none; margin-top:10%" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">RIDER</div>
+                            
+                        </div>  
+                        <div class="panel-body" >
+                            <form id="signupform" class="form-horizontal" role="form" action="textdrivers.html">
+                                
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                                    
+                                
+                                  
+                                <div class="form-group">
+                                        <label for="start" class="col-md-3 control-label">Origin</label>
+                                    <div class="col-md-9">
+                                    <div style = "display:inline-block; width: 90%; margin: 0 0">
+                                        <input id = "return" type="text" class="form-control" name="start" placeholder="From" required>
+                                    </div>
+                                    <div style = "display:inline-block; margin: 0 0; width: 5%">
+                                        <!--<input type="image" src="img/loc.png" id="search" onClick="getLocation();">-->
+                                        <button type="button" class="btn btn-default"  id="search"  onClick="getLocation();" style = "width : 50%; height: 50%; margin-top : -1%" >
+                                            <img src="img/loc.png" id="loc-image">
+                                        </button>
+                                       
+                                    </div>  
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <label for="dest" class="col-md-3 control-label">Destination</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="dest" placeholder="Destination" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="col-md-3 control-label">Phone Number</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="contact" placeholder="Phone Number" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">Time </label>
+                                    <div class="col-md-9">
+                                        <input type="time" class="form-control" name="time" placeholder="Time" required>
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <label for="icode" class="col-md-3 control-label">Payment<br>(optional)</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="payment" placeholder="CDN" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Search</button>
+                                        <div style="float:right; font-size: 85%; position: relative; top: -10px">
+                                            <a class="left" id="rider" style = "color : blue">I'm am DRIVER</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--
+                                <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
+                                    
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Sign Up with Facebook</button>
+                                    </div>                                           
+                                        
+                                </div>
+                                -->
+                                
+                                
+                                
+                            </form>
+                         </div>
+                    </div>
+
+               
+               
+                
+         </div> 
+    </div>
+    
+  
+
+    
+    <div id="foo" class = "car"><img src="img/sidebar.png"></div>
+    <div id="map-canvas"></div>
+    
+    
+    
+
+<div id = "facebook" class="fb-like" data-href="https://bdaves.koding.io" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bdaves.koding.io">Tweet</a>
+        
+
+
+</body>
+
+</html>
+
+
+
+
